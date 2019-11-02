@@ -32,4 +32,9 @@ ListGroup.propTypes = {
   // onPageChange: PropTypes.func.isRequired
 };
 
+ListGroup.defaultProps = {
+  textProperty: "name",
+  valueProperty: "_id"
+};
+
 export default ListGroup;
