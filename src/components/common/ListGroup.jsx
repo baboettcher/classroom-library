@@ -11,11 +11,11 @@ const ListGroup = props => {
   const genresMenu = items.map(singleItem => {
     return (
       <li
-        class="list-group-singleItem"
-        key={singleItem._id}
+        className="list-group-item"
+        key={singleItem[valueProperty]}
         onClick={() => onGenreSelect(singleItem)}
       >
-        {singleItem.name}
+        {singleItem[textProperty]}
       </li>
     );
   });
