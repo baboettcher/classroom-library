@@ -134,7 +134,11 @@ class Movies extends Component {
     return (
       <div className="row">
         <div className="col-2">
-          <ListGroup items={genres} onGenreSelect={this.handleGenreSelect} />
+          <ListGroup
+            items={genres}
+            onItemSelect={this.handleGenreSelect}
+            itemSelected={filterBy}
+          />
         </div>
         <div className="col">
           <h4>
@@ -157,6 +161,7 @@ class Movies extends Component {
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
+            itemSelected={filterBy}
           />
         </div>
       </div>

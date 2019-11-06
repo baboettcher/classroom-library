@@ -3,17 +3,29 @@ import _ from "lodash";
 import PropTypes from "prop-types";
 
 const ListGroup = props => {
-  let { items, textProperty, valueProperty, onGenreSelect } = props;
+  let {
+    items,
+    textProperty,
+    valueProperty,
+    onItemSelect,
+    itemSelected
+  } = props;
 
   //  APPEND ALL GENRES HERE - MAKE THIS PART REUSABLE
   items = [{ _id: "1", name: "All Genres" }, ...items];
 
   const genresMenu = items.map(singleItem => {
+    console.log("itemSelected==>", itemSelected);
+    console.log("singleItem[textProperty]==>", singleItem[textProperty]);
     return (
       <li
-        className="list-group-item"
+        className={
+          itemSelected == singleItem[textProperty]
+            ? "list-group-item active"
+            : "list-group-item"
+        }
         key={singleItem[valueProperty]}
-        onClick={() => onGenreSelect(singleItem)}
+        onClick={() => onItemSelect(singleItem)}
       >
         {singleItem[textProperty]}
       </li>
