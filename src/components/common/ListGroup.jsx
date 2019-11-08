@@ -12,7 +12,7 @@ const ListGroup = props => {
   } = props;
 
   //  APPEND ALL GENRES HERE - MAKE THIS PART REUSABLE
-  items = [{ _id: "1", name: "All Genres" }, ...items];
+  // items = [{ _id: "1", name: "All Genres" }, ...items];
 
   const genresMenu = items.map(singleItem => {
     console.log("itemSelected==>", itemSelected);
