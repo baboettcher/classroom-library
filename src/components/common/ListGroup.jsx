@@ -11,9 +11,6 @@ const ListGroup = props => {
     itemSelected
   } = props;
 
-  //  APPEND ALL GENRES HERE - MAKE THIS PART REUSABLE
-  // items = [{ _id: "1", name: "All Genres" }, ...items];
-
   const genresMenu = items.map(singleItem => {
     console.log("itemSelected==>", itemSelected);
     console.log("singleItem[textProperty]==>", singleItem[textProperty]);
@@ -31,17 +28,15 @@ const ListGroup = props => {
       </li>
     );
   });
-
   return <ul class="list-group">{genresMenu}</ul>;
 };
 
 ListGroup.propTypes = {
   genres: PropTypes.array.isRequired,
-  handleFilterClick: PropTypes.func.isRequired
-
-  // pageSize: PropTypes.number.isRequired,
-  // totalItemCount: PropTypes.number.isRequired,
-  // onPageChange: PropTypes.func.isRequired
+  handleFilterClick: PropTypes.func.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  totalItemCount: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired
 };
 
 ListGroup.defaultProps = {

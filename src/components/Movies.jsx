@@ -12,8 +12,6 @@ class Movies extends Component {
     genre: [],
     currentPage: 1,
     pageSize: 4,
-    startingIndex: 1,
-    endingIndex: 99,
     selectedGenreFilter: "",
     filteredMovies: []
   };
@@ -46,29 +44,7 @@ class Movies extends Component {
   };
 
   handlePageChange = page => {
-    const moviesLength = this.state.filteredMovies.length;
-    const { pageSize } = this.state;
-    const startingIndex = (page - 1) * pageSize + 1;
-
-    this.setState({ startingIndex, currentPage: page });
-
-    // pageSize = 4
-
-    // start         ending            moviesLength
-    // 1             1 + 4 = 5           9
-
-    // STILL BUGGY WITH THE ending index
-    // ALSO, how to begin with the ending index
-    if (startingIndex + pageSize - 1 > moviesLength) {
-      this.setState({
-        endingIndex: startingIndex + (moviesLength % pageSize)
-        //                                  9        %
-      });
-    } else {
-      this.setState({
-        endingIndex: startingIndex + pageSize - 1
-      });
-    }
+    this.setState({ currentPage: page });
   };
 
   handleGenreSelect = genreObject => {
@@ -84,70 +60,28 @@ class Movies extends Component {
       genres,
       selectedGenreFilter,
       currentPage,
-      pageSize,
-      startingIndex,
-      endingIndex
+      pageSize
     } = this.state;
 
     // FILTER
-    // FRIDAY - selectedGenreFilter is now an object
-    // it should be compated on line 100 with selectedGenreFilter.name
-    // SOLVE IT!
-    const filteredMovies2 =
+    const filteredMovies =
       selectedGenreFilter && selectedGenreFilter._id
         ? movies.filter(movie => {
             return movie.genre.name === selectedGenreFilter.name;
           })
         : movies;
-    console.log("====selectedGenreFilter.name ===>", selectedGenreFilter.name);
-    console.log("====selectedGenreFilter ===>", selectedGenreFilter);
-    console.log("filteredMovies2 ===>", filteredMovies2);
 
-    // let filteredMovies = movies.slice();
-
-    // if (selectedGenreFilter !== "All Genres") {
-    //   filteredMovies = movies.filter(m => {
-    //     return m.genre.name === selectedGenreFilter;
-    //   });
-    // }
-
-    //  const moviesLength = filteredMovies.length;
-    const moviesLength2 = filteredMovies2.length;
+    const moviesLength = filteredMovies.length;
 
     // PAGINATE
-    // const moviesToDisplay = paginate(filteredMovies, currentPage, pageSize);
-    const moviesToDisplay2 = paginate(filteredMovies2, currentPage, pageSize);
+    const moviesToDisplay = paginate(filteredMovies, currentPage, pageSize);
 
-    if (moviesToDisplay2.length === 0) {
+    if (moviesToDisplay.length === 0) {
       return <p>No movies to display</p>;
     }
 
-    /*     const currentMovies = movies
+    const currentMovies = movies
       ? moviesToDisplay.map((m, i) => {
-          return (
-            <tr key={m._id}>
-              <td>{m.title}</td>
-              <td>{m.genre.name}</td>
-              <td>{m.numberInStock}</td>
-              <td onClick={() => this.handleLike(m)}>
-                <Like liked={m.liked} />
-              </td>
-              <td>
-                <button
-                  onClick={() => this.handleDelete(m._id)}
-                  type="button"
-                  className="btn btn-primary btn-sm"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          );
-        })
-      : null;
- */
-    const currentMovies2 = movies
-      ? moviesToDisplay2.map((m, i) => {
           return (
             <tr key={m._id}>
               <td>{m.title}</td>
@@ -179,9 +113,10 @@ class Movies extends Component {
             itemSelected={selectedGenreFilter}
           />
         </div>
+
         <div className="col">
           <h4>
-            There are a total of {moviesLength2} in {selectedGenreFilter.name}{" "}
+            There are a total of {moviesLength} in {selectedGenreFilter.name}{" "}
             genre
           </h4>
           <table className="table">
@@ -194,10 +129,10 @@ class Movies extends Component {
               </tr>
             </thead>
 
-            <tbody>{currentMovies2}</tbody>
+            <tbody>{currentMovies}</tbody>
           </table>
           <Pagination
-            totalItemCount={moviesLength2}
+            totalItemCount={moviesLength}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
