@@ -12,8 +12,6 @@ const ListGroup = props => {
   } = props;
 
   const genresMenu = items.map(singleItem => {
-    console.log("itemSelected==>", itemSelected);
-    console.log("singleItem[textProperty]==>", singleItem[textProperty]);
     return (
       <li
         className={
