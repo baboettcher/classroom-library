@@ -1,32 +1,36 @@
 import React, { Component } from "react";
 
 class MoviesTable extends Component {
-  raiseSort = () => {
-    console.log("#1")
-    //hi
-  }
-  raiseSort2() {
-    console.log("#2")
+  raiseSort = (path) => {
+    const { onSort } = this.props
+    const sortColumnTemp = { ...this.props.sortColumn } // to not mutate
+    if (sortColumnTemp.path === path)
+      sortColumnTemp.order = (sortColumnTemp.order === "asc") ? "desc" : "asc"
+    else {
+      sortColumnTemp.path = path
+      sortColumnTemp.order = "asc"
+    }
+    onSort(sortColumnTemp)
   }
 
 
   render() {
-    const { data, onSort } = this.props;
+    const { data } = this.props;
 
     return (<table className="table">
       <thead>
         <tr>
-          <th scope="col" onClick={() => onSort("title")}>
+          <th scope="col" onClick={() => this.raiseSort("title")}>
             Title
         </th>
 
-          <th scope="col" onClick={() => onSort("genre.name")}>
+          <th scope="col" onClick={() => this.raiseSort("genre.name")}>
             Genre
         </th>
-          <th scope="col" onClick={() => onSort("numberInStock")}>
+          <th scope="col" onClick={() => this.raiseSort("numberInStock")}>
             Number In Stock
         </th>
-          <th scope="col" onClick={() => onSort("like")}>
+          <th scope="col" onClick={() => this.raiseSort("like")}>
             Like
         </th>
         </tr>

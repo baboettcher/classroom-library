@@ -58,20 +58,9 @@ class Movies extends Component {
   };
 
 
-  handleSort = path => {
-
-    const sortColumnTemp = { ...this.state.sortColumn };
-
-    if (sortColumnTemp.path === path)
-      sortColumnTemp.order = (sortColumnTemp.order === "asc") ? "desc" : "asc"
-
-    else {
-      sortColumnTemp.path = path
-      sortColumnTemp.order = "asc"
-    }
-
+  handleSort = sortColumn => {
     this.setState({
-      sortColumn: sortColumnTemp
+      sortColumn
     })
   }
 
@@ -98,7 +87,6 @@ class Movies extends Component {
 
     // 2. SORT
     const sortedMovies = _.orderBy(filteredMovies, sortColumn.path, sortColumn.order)
-    console.log("sortColumn", sortColumn)
 
     // 3. PAGINATE
     const moviesToDisplay = paginate(sortedMovies, currentPage, pageSize);
@@ -147,7 +135,7 @@ class Movies extends Component {
             There are a total of {moviesLength} in {selectedGenreFilter.name}{" "}
             genre
           </h4>
-          <MoviesTable onSort={this.handleSort} data={currentMovies} />
+          <MoviesTable onSort={this.handleSort} sortColumn={sortColumn} data={currentMovies} />
 
           <Pagination
             totalItemCount={moviesLength}
@@ -163,3 +151,20 @@ class Movies extends Component {
 }
 
 export default Movies;
+
+
+
+
+/*
+handleSort = path => {
+  const sortColumnTemp = { ...this.state.sortColumn };
+  if (sortColumnTemp.path === path)
+    sortColumnTemp.order = (sortColumnTemp.order === "asc") ? "desc" : "asc"
+  else {
+    sortColumnTemp.path = path
+    sortColumnTemp.order = "asc"
+  }
+  this.setState({
+    sortColumn: sortColumnTemp
+  })
+} */
