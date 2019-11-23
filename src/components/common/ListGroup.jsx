@@ -1,13 +1,12 @@
 import React from "react";
-import _ from "lodash";
 import PropTypes from "prop-types";
 
 const ListGroup = props => {
   let {
-    items,
+    items, // item in list menu
     textProperty,
     valueProperty,
-    onItemSelect,
+    onItemSelect, // function to set state
     itemSelected
   } = props;
 
@@ -15,7 +14,7 @@ const ListGroup = props => {
     return (
       <li
         className={
-          itemSelected == singleItem[textProperty]
+          itemSelected === singleItem[textProperty]
             ? "list-group-item active"
             : "list-group-item"
         }
@@ -26,15 +25,13 @@ const ListGroup = props => {
       </li>
     );
   });
-  return <ul class="list-group">{genresMenu}</ul>;
+  return <ul className="list-group">{genresMenu}</ul>;
 };
 
 ListGroup.propTypes = {
-  genres: PropTypes.array.isRequired,
-  handleFilterClick: PropTypes.func.isRequired,
-  pageSize: PropTypes.number.isRequired,
-  totalItemCount: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired
+  items: PropTypes.array.isRequired,
+  onItemSelect: PropTypes.func.isRequired,
+  itemSelected: PropTypes.object.isRequired
 };
 
 ListGroup.defaultProps = {

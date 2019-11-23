@@ -14,6 +14,7 @@ class MoviesTable extends Component {
   }
 
 
+
   render() {
     const { data } = this.props;
 

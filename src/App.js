@@ -1,5 +1,7 @@
-import React, { Component } from "react";
-import Movies from "./components/Movies";
+import React, {
+  Component
+} from "react";
+import Movies from "./components/movies";
 import "./App.css";
 import ColorChangerHooks from "./testHooks/colorChanger_hooks";
 
@@ -7,12 +9,14 @@ import ColorChangerHooks from "./testHooks/colorChanger_hooks";
 //
 class App extends Component {
   render() {
-    return (
-      <main className="container">
-        <h1>Classroom Library</h1>
-        <Movies />
-        <ColorChangerHooks />
-      </main>
+    return ( < main className = "container" >
+      <
+      h1 > Classroom Library < /h1>  <
+      Movies / >
+      <
+      ColorChangerHooks / >
+      <
+      /main>
     );
   }
 }
