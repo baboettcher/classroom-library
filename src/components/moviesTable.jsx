@@ -1,45 +1,34 @@
 import React, { Component } from "react";
+import TableHeader from "./common/tableHeader"
 
 class MoviesTable extends Component {
-  raiseSort = (path) => {
-    const { onSort } = this.props
-    const sortColumnTemp = { ...this.props.sortColumn } // to not mutate
-    if (sortColumnTemp.path === path)
-      sortColumnTemp.order = (sortColumnTemp.order === "asc") ? "desc" : "asc"
-    else {
-      sortColumnTemp.path = path
-      sortColumnTemp.order = "asc"
-    }
-    onSort(sortColumnTemp)
-  }
-
 
 
   render() {
-    const { data } = this.props;
+    const { data, onSort, sortColumn } = this.props;
 
-    return (<table className="table">
-      <thead>
-        <tr>
-          <th scope="col" onClick={() => this.raiseSort("title")}>
-            Title
-        </th>
-
-          <th scope="col" onClick={() => this.raiseSort("genre.name")}>
-            Genre
-        </th>
-          <th scope="col" onClick={() => this.raiseSort("numberInStock")}>
-            Number In Stock
-        </th>
-          <th scope="col" onClick={() => this.raiseSort("like")}>
-            Like
-        </th>
-        </tr>
-      </thead>
-
-      <tbody>{data}</tbody>
-    </table>);
+    return (
+      <div>
+        <TableHeader data={data} titlesArray={[
+          {
+            name: "Title",
+            path: "title"
+          },
+          {
+            name: "Genre",
+            path: "genre.name"
+          },
+          {
+            name: "Number In Stock",
+            path: "numberInStock"
+          },
+          {
+            name: "Like",
+            path: "like"
+          }]} onSort={onSort} sortColumn={sortColumn} />
+      </div>
+    )
   }
 }
-
 export default MoviesTable;
+

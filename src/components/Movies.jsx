@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Like from "./common/Like";
+import Like from "./common/like";
 import _ from "lodash";
-import Pagination from "./common/Pagination";
-import ListGroup from "./common/ListGroup";
+import Pagination from "./common/pagination";
+import ListGroup from "./common/listGroup";
 import MoviesTable from "./moviesTable";
 import { paginate } from "../utils/paginate";
 import { getMovies } from "../services/fakeMovieService";
@@ -91,7 +91,7 @@ class Movies extends Component {
     // 3. PAGINATE
     const moviesToDisplay = paginate(sortedMovies, currentPage, pageSize);
 
-    if (moviesToDisplay.length === 0) {
+    if (movies.length === 0) {
       return <p>No movies to display</p>;
     }
 
@@ -144,6 +144,8 @@ class Movies extends Component {
             onPageChange={this.handlePageChange}
             itemSelected={selectedGenreFilter}
           />
+          <h6>Issue with moviesToDisplay: {moviesToDisplay.length}</h6>
+
         </div>
       </div>
     );
@@ -153,18 +155,3 @@ class Movies extends Component {
 export default Movies;
 
 
-
-
-/*
-handleSort = path => {
-  const sortColumnTemp = { ...this.state.sortColumn };
-  if (sortColumnTemp.path === path)
-    sortColumnTemp.order = (sortColumnTemp.order === "asc") ? "desc" : "asc"
-  else {
-    sortColumnTemp.path = path
-    sortColumnTemp.order = "asc"
-  }
-  this.setState({
-    sortColumn: sortColumnTemp
-  })
-} */
