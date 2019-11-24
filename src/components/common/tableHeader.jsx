@@ -23,7 +23,7 @@ class TableHeader extends Component {
     const { titlesArray } = this.props
     const headers = titlesArray.map(title => {
       return (
-        <th key={title.path} scope="col" onClick={() => this.raiseSort(title.path)}>
+        <th key={title.path || title.key} scope="col" onClick={() => this.raiseSort(title.path)}>
           {title.name}
         </th>)
     })

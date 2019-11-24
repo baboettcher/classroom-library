@@ -25,7 +25,9 @@ class MoviesTable extends Component {
           {
             name: "Like",
             path: "like"
-          }]} onSort={onSort} sortColumn={sortColumn} />
+          },
+
+          { key: "delete" }]} onSort={onSort} sortColumn={sortColumn} />
       </div>
     )
   }
