@@ -7,11 +7,13 @@ import MoviesTable from "./moviesTable";
 import { paginate } from "../utils/paginate";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
+import { getTitles } from "../services/fakeTitlesService";
 
 class Movies extends Component {
   state = {
     movies: [],
-    genre: [],
+    genres: [],
+    titles: [],
     currentPage: 1,
     pageSize: 4,
     selectedGenreFilter: {},
@@ -22,7 +24,8 @@ class Movies extends Component {
   componentDidMount() {
     this.setState({
       movies: getMovies(),
-      genres: [{ _id: "", name: "All Genres" }, ...getGenres()]
+      genres: [{ _id: "", name: "All Genres" }, ...getGenres()],
+      titles: [...getTitles()]
     });
   }
 
@@ -57,18 +60,17 @@ class Movies extends Component {
     });
   };
 
-
   handleSort = sortColumn => {
     this.setState({
       sortColumn
     })
   }
 
-
   render() {
     const {
       movies,
       genres,
+      titles,
       selectedGenreFilter,
       currentPage,
       pageSize,
@@ -129,13 +131,12 @@ class Movies extends Component {
             itemSelected={selectedGenreFilter}
           />
         </div>
-
         <div className="col">
           <h4>
             There are a total of {moviesLength} in {selectedGenreFilter.name}{" "}
             genre
           </h4>
-          <MoviesTable onSort={this.handleSort} sortColumn={sortColumn} data={currentMovies} />
+          <MoviesTable onSort={this.handleSort} sortColumn={sortColumn} data={currentMovies} titles={titles} />
 
           <Pagination
             totalItemCount={moviesLength}

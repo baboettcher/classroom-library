@@ -1,34 +1,17 @@
 import React, { Component } from "react";
 import TableHeader from "./common/tableHeader"
+import TableBody from "./common/tableBody"
+
 
 class MoviesTable extends Component {
-
-
   render() {
+    const { titles } = this.props
     const { data, onSort, sortColumn } = this.props;
-
     return (
-      <div>
-        <TableHeader data={data} titlesArray={[
-          {
-            name: "Title",
-            path: "title"
-          },
-          {
-            name: "Genre",
-            path: "genre.name"
-          },
-          {
-            name: "Number In Stock",
-            path: "numberInStock"
-          },
-          {
-            name: "Like",
-            path: "like"
-          },
-
-          { key: "delete" }]} onSort={onSort} sortColumn={sortColumn} />
-      </div>
+      <table className="table">
+        <TableHeader titlesArray={titles} onSort={onSort} sortColumn={sortColumn} />
+        <TableBody data={data} />
+      </table>
     )
   }
 }

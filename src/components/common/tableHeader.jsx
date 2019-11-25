@@ -16,8 +16,6 @@ class TableHeader extends Component {
     onSort(sortColumnTemp)
   }
 
-
-
   render() {
     const { data } = this.props
     const { titlesArray } = this.props
@@ -28,14 +26,12 @@ class TableHeader extends Component {
         </th>)
     })
     return (
-      <table className="table">
-        <thead>
-          <tr>
-            {headers}
-          </tr>
-        </thead>
-        <tbody>{data}</tbody>
-      </table>);
+      <thead>
+        <tr>
+          {headers}
+        </tr>
+      </thead>
+    );
   }
 }
 
