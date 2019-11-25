@@ -17,7 +17,6 @@ class TableHeader extends Component {
   }
 
   render() {
-    const { data } = this.props
     const { titlesArray } = this.props
     const headers = titlesArray.map(title => {
       return (
@@ -38,7 +37,6 @@ class TableHeader extends Component {
 
 TableHeader.propTypes = {
   titlesArray: PropTypes.array.isRequired,
-  data: PropTypes.array.isRequired,
   onSort: PropTypes.func.isRequired,
   sortColumn: PropTypes.object.isRequired
 };

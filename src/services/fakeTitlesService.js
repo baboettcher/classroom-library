@@ -1,5 +1,3 @@
-import * as titlesAPI from "./fakeGenreService";
-
 const titles = [{
     name: "Titles!!!!",
     path: "title"

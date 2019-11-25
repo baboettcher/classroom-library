@@ -6,11 +6,11 @@ import TableBody from "./common/tableBody"
 class MoviesTable extends Component {
   render() {
     const { titles } = this.props
-    const { data, onSort, sortColumn } = this.props;
+    const { data, dataToDisplay, onSort, sortColumn } = this.props;
     return (
       <table className="table">
         <TableHeader titlesArray={titles} onSort={onSort} sortColumn={sortColumn} />
-        <TableBody data={data} />
+        <TableBody data={data} dataToDisplay={dataToDisplay} />
       </table>
     )
   }

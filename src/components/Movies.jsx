@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Like from "./common/like";
+// import Like from "./common/like";
 import _ from "lodash";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
@@ -96,31 +96,32 @@ class Movies extends Component {
     if (movies.length === 0) {
       return <p>No movies to display</p>;
     }
-
-
-    const currentMovies = movies
-      ? moviesToDisplay.map((m, i) => {
-        return (
-          <tr key={m._id}>
-            <td>{m.title}</td>
-            <td>{m.genre.name}</td>
-            <td>{m.numberInStock}</td>
-            <td onClick={() => this.handleLike(m)}>
-              <Like liked={m.liked} />
-            </td>
-            <td>
-              <button
-                onClick={() => this.handleDelete(m._id)}
-                type="button"
-                className="btn btn-primary btn-sm"
-              >
-                Delete
-                </button>
-            </td>
-          </tr>
-        );
-      })
-      : null;
+    // NEXT" Wher eis the issue with passing data and data To Display
+    // also need to pass delete function
+    /* 
+        const currentMovies = movies
+          ? moviesToDisplay.map((m, i) => {
+            return (
+              <tr key={m._id}>
+                <td>{m.title}</td>
+                <td>{m.genre.name}</td>
+                <td>{m.numberInStock}</td>
+                <td onClick={() => this.handleLike(m)}>
+                  <Like liked={m.liked} />
+                </td>
+                <td>
+                  <button
+                    onClick={() => this.handleDelete(m._id)}
+                    type="button"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Delete
+                    </button>
+                </td>
+              </tr>
+            );
+          })
+          : null; */
 
     return (
       <div className="row">
@@ -136,7 +137,8 @@ class Movies extends Component {
             There are a total of {moviesLength} in {selectedGenreFilter.name}{" "}
             genre
           </h4>
-          <MoviesTable onSort={this.handleSort} sortColumn={sortColumn} data={currentMovies} titles={titles} />
+
+          <MoviesTable onSort={this.handleSort} sortColumn={sortColumn} data={movies} dataToDisplay={moviesToDisplay} titles={titles} />
 
           <Pagination
             totalItemCount={moviesLength}
