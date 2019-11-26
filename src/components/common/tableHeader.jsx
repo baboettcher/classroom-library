@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 class TableHeader extends Component {
 
-  // move raiseSort insert below
   raiseSort = (path) => {
     const { onSort } = this.props
     const sortColumnTemp = { ...this.props.sortColumn } // to not mutate
@@ -17,11 +16,11 @@ class TableHeader extends Component {
   }
 
   render() {
-    const { titlesArray } = this.props
-    const headers = titlesArray.map(title => {
+    const { columns } = this.props
+    const headers = columns.map(column => {
       return (
-        <th key={title.path || title.key} scope="col" onClick={() => this.raiseSort(title.path)}>
-          {title.name}
+        <th key={column.path || column.key} scope="col" onClick={() => this.raiseSort(column.path)}>
+          {column.name}
         </th>)
     })
     return (
@@ -36,9 +35,8 @@ class TableHeader extends Component {
 
 
 TableHeader.propTypes = {
-  titlesArray: PropTypes.array.isRequired,
-  onSort: PropTypes.func.isRequired,
-  sortColumn: PropTypes.object.isRequired
+  sortColumn: PropTypes.object.isRequired,
+  onSort: PropTypes.func.isRequired
 };
 
 

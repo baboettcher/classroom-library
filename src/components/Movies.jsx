@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import Like from "./common/like";
 import _ from "lodash";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
@@ -7,13 +6,13 @@ import MoviesTable from "./moviesTable";
 import { paginate } from "../utils/paginate";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
-import { getTitles } from "../services/fakeTitlesService";
+import { getColumns } from "../services/fakeColumnService";
 
 class Movies extends Component {
   state = {
     movies: [],
     genres: [],
-    titles: [],
+    columns: [],
     currentPage: 1,
     pageSize: 4,
     selectedGenreFilter: {},
@@ -25,7 +24,7 @@ class Movies extends Component {
     this.setState({
       movies: getMovies(),
       genres: [{ _id: "", name: "All Genres" }, ...getGenres()],
-      titles: [...getTitles()]
+      columns: [...getColumns()]
     });
   }
 
@@ -70,7 +69,7 @@ class Movies extends Component {
     const {
       movies,
       genres,
-      titles,
+      columns,
       selectedGenreFilter,
       currentPage,
       pageSize,
@@ -96,32 +95,6 @@ class Movies extends Component {
     if (movies.length === 0) {
       return <p>No movies to display</p>;
     }
-    // NEXT" Wher eis the issue with passing data and data To Display
-    // also need to pass delete function
-    /* 
-        const currentMovies = movies
-          ? moviesToDisplay.map((m, i) => {
-            return (
-              <tr key={m._id}>
-                <td>{m.title}</td>
-                <td>{m.genre.name}</td>
-                <td>{m.numberInStock}</td>
-                <td onClick={() => this.handleLike(m)}>
-                  <Like liked={m.liked} />
-                </td>
-                <td>
-                  <button
-                    onClick={() => this.handleDelete(m._id)}
-                    type="button"
-                    className="btn btn-primary btn-sm"
-                  >
-                    Delete
-                    </button>
-                </td>
-              </tr>
-            );
-          })
-          : null; */
 
     return (
       <div className="row">
@@ -138,7 +111,14 @@ class Movies extends Component {
             genre
           </h4>
 
-          <MoviesTable onSort={this.handleSort} sortColumn={sortColumn} data={movies} dataToDisplay={moviesToDisplay} titles={titles} />
+          <MoviesTable
+            data={movies}
+            dataToDisplay={moviesToDisplay}
+            onSort={this.handleSort}
+            sortColumn={sortColumn}
+            columns={columns}
+            onDelete={this.handleDelete}
+            onLike={this.handleLike} />
 
           <Pagination
             totalItemCount={moviesLength}
