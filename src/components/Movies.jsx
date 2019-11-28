@@ -6,13 +6,11 @@ import MoviesTable from "./moviesTable";
 import { paginate } from "../utils/paginate";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
-import { getColumns } from "../services/fakeColumnService";
 
 class Movies extends Component {
   state = {
     movies: [],
     genres: [],
-    columns: [],
     currentPage: 1,
     pageSize: 4,
     selectedGenreFilter: {},
@@ -23,8 +21,7 @@ class Movies extends Component {
   componentDidMount() {
     this.setState({
       movies: getMovies(),
-      genres: [{ _id: "", name: "All Genres" }, ...getGenres()],
-      columns: [...getColumns()]
+      genres: [{ _id: "", name: "All Genres" }, ...getGenres()]
     });
   }
 
@@ -40,6 +37,7 @@ class Movies extends Component {
   };
 
   handleLike = singleMovie => {
+    console.log("LIKE!")
     const newMovies = [...this.state.movies];
     const index = newMovies.indexOf(singleMovie);
     newMovies[index].liked = !singleMovie.liked;
@@ -69,7 +67,6 @@ class Movies extends Component {
     const {
       movies,
       genres,
-      columns,
       selectedGenreFilter,
       currentPage,
       pageSize,
@@ -116,7 +113,6 @@ class Movies extends Component {
             dataToDisplay={moviesToDisplay}
             onSort={this.handleSort}
             sortColumn={sortColumn}
-            columns={columns}
             onDelete={this.handleDelete}
             onLike={this.handleLike} />
 

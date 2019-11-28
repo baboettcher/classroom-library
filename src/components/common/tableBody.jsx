@@ -8,9 +8,9 @@ class TableBody extends Component {
   render() {
     const { data, dataToDisplay, onDelete, onLike, columns } = this.props
 
-    // Get rid of titles array and use columns
-    // then create content property and add likes
-
+    // ---- NEXT ---- //
+    // Add conten field to fakeColumnService
+    // Like and Delete buttons
 
     console.log("columns---->", columns)
     const currentMovies = data
@@ -20,15 +20,16 @@ class TableBody extends Component {
           <tr key={i}>
             {columns.map((column) => {
               return (
-                <td>{_.get(item, column.path)}</td>
+                // here we need to pass onDelete and onLike just for the last two components. ugly.
+                <td>{column.content ? column.content(item, onLike, onDelete, Like) : _.get(item, column.path)}</td>
               )
             })}
-
             {/* 
-            <td onClick={() => onLike(item)}>
+            <td onClick={() => onLike(item)} >
               <Like liked={item[columns[3].path]} />
-            </td> 
-            <td>
+            </td> */}
+
+            {/* <td>
               <button
                 onClick={() => onDelete(item._id)}
                 type="button"
@@ -36,8 +37,7 @@ class TableBody extends Component {
               >
                 Delete
               </button>
-            </td>
- */}
+            </td> */}
 
           </tr>
         );
