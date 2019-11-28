@@ -50,6 +50,10 @@ class Movies extends Component {
     this.setState({ currentPage: page });
   };
 
+  handleTest() {
+    // test123
+  }
+
   handleGenreSelect = genreObject => {
     this.setState({
       selectedGenreFilter: genreObject,
