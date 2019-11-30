@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import TableHeader from "./common/tableHeader"
 import TableBody from "./common/tableBody"
+import Like from "./common/like";
 
 class MoviesTable extends Component {
-
   columns = [{
     name: "Los titulos",
     path: "title"
@@ -17,33 +17,25 @@ class MoviesTable extends Component {
     path: "numberInStock"
   },
   {
-    name: "Like",
     key: "like",
     path: "like",
-    content: (item, onLike, onDelete, Like) => {
-      return (
-        <td onClick={() => onLike(item)} >
-          <Like liked={item[this.columns[3].path]} />
-        </td>
-      )
-    }
+    content: item => (
+      <Like
+        onClick={() => this.props.onLike(item)}
+        liked={item.liked} />
+    )
   },
   {
     key: "delete",
     path: "delete",
-    content: (item, onLike, onDelete) => {
+    content: (item) => {
       return (
-        <td>
-          <button
-            onClick={() => onDelete(item._id)}
-            type="button"
-            className="btn btn-primary btn-sm"
-          >
-            Delete
-    </button>
-        </td>
+        <button
+          onClick={() => this.props.onDelete(item._id)}
+          type="button"
+          className="btn btn-primary btn-sm"
+        >Delete </button>
       )
-
     }
   }
   ]

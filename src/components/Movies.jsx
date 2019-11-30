@@ -37,7 +37,6 @@ class Movies extends Component {
   };
 
   handleLike = singleMovie => {
-    console.log("LIKE!")
     const newMovies = [...this.state.movies];
     const index = newMovies.indexOf(singleMovie);
     newMovies[index].liked = !singleMovie.liked;
@@ -64,6 +63,7 @@ class Movies extends Component {
   }
 
   render() {
+    console.log("MOVIES ===> ", this.state)
     const {
       movies,
       genres,
