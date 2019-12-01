@@ -103,7 +103,7 @@ class Movies extends Component {
         </div>
         <div className="col">
           <h4>
-            There are a total of {moviesLength} in {selectedGenreFilter.name}{" "}
+            There are a TOTAL of {moviesLength} in {selectedGenreFilter.name}{" "}
             genre
           </h4>
 
