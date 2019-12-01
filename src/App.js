@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Movies from "./components/movies";
+import Movies from "./components/Movies";
 import "./App.css";
 import ColorChangerHooks from "./testHooks/colorChanger_hooks";
 

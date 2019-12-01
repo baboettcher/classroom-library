@@ -7,15 +7,20 @@ class TableBody extends Component {
     return (column.content ? column.content(item) : _.get(item, column.path)
     )
   }
+
+  createKey = (item, column) => {
+    return item._id + (column.path || column.key)
+  }
+
   render() {
     const { data, dataToDisplay, columns } = this.props
     const currentMovies = data
       ? dataToDisplay.map((item) => {
         return (
           <tr key={item._id}>
-            {columns.map((column, j) => {
+            {columns.map((column) => {
               return (
-                <td key={j}>{this.renderCell(item, column)}</td>
+                <td key={this.createKey(item, column)}>{this.renderCell(item, column)}</td>
               )
             })}
           </tr>
