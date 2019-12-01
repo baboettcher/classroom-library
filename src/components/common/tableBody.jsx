@@ -3,39 +3,26 @@ import _ from "lodash"
 import PropTypes from "prop-types";
 
 class TableBody extends Component {
-
+  renderCell = (item, column) => {
+    return (column.content ? column.content(item) : _.get(item, column.path)
+    )
+  }
   render() {
     const { data, dataToDisplay, columns } = this.props
     const currentMovies = data
-      ? dataToDisplay.map((item, i) => {
+      ? dataToDisplay.map((item) => {
         return (
-          <tr key={i}>
-            {columns.map((column) => {
+          <tr key={item._id}>
+            {columns.map((column, j) => {
               return (
-                <td>{column.content ? column.content(item) : _.get(item, column.path)}</td>
+                <td key={j}>{this.renderCell(item, column)}</td>
               )
             })}
-            {/* 
-            <td onClick={() => onLike(item)} >
-              <Like liked={item[columns[3].path]} />
-            </td> */}
-
-            {/* <td>
-              <button
-                onClick={() => onDelete(item._id)}
-                type="button"
-                className="btn btn-primary btn-sm"
-              >
-                Delete
-              </button>
-            </td> */}
-
           </tr>
         );
       })
       : null;
     return (
-
       <tbody>{currentMovies}</tbody>
     )
   }
@@ -44,6 +31,5 @@ class TableBody extends Component {
 TableBody.propTypes = {
   data: PropTypes.array.isRequired
 };
-
 
 export default TableBody;

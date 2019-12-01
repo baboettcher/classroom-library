@@ -63,7 +63,6 @@ class Movies extends Component {
   }
 
   render() {
-    console.log("MOVIES ===> ", this.state)
     const {
       movies,
       genres,
