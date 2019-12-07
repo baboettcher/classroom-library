@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-// import TableHeader from "./common/tableHeader"
-// import TableBody from "./common/tableBody"
 import Table from "./common/table"
 import Like from "./common/like";
 
 class MoviesTable extends Component {
+
   columns = [{
     name: "Los titulos",
     path: "title"
@@ -40,8 +39,9 @@ class MoviesTable extends Component {
     }
   }
   ]
+
   render() {
-    const { data, dataToDisplay, onSort, onDelete, onLike, sortColumn } = this.props;
+    const { data, dataToDisplay, onSort, sortColumn } = this.props;
 
     return (
       <table className="table">
