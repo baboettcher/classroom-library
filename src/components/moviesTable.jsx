@@ -1,12 +1,18 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import Table from "./common/table"
 import Like from "./common/like";
 
 class MoviesTable extends Component {
 
+  // LATER: add spanish/english toggle
   columns = [{
     name: "Los titulos",
-    path: "title"
+    path: "title",
+    content: item => (
+      <Link
+        to={`/movies/${item._id}`}>{item.title}</Link>
+    )
   },
   {
     name: "Genre",

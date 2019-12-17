@@ -25,10 +25,10 @@ class Movies extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // console.log("prevProps:", prevProps);
-    // console.log("prevState:", prevState);
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   // console.log("prevProps:", prevProps);
+  //   // console.log("prevState:", prevState);
+  // }
 
   handleDelete = id => {
     this.setState({
