@@ -65,6 +65,7 @@ class LoginForm extends Component {
 
   render() {
     const { errors } = this.state
+
     return (
       <div>
         <h1>Login Form</h1>
@@ -81,7 +82,7 @@ class LoginForm extends Component {
             value={this.state.account.password}
             onChange={this.handleChange}
             error={errors} />
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-primary" disabled={this.validate()}>Login</button>
         </form>
       </div>
     );
