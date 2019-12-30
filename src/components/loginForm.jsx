@@ -69,7 +69,6 @@ class LoginForm extends Component {
     return (
       <div>
         <h1>Login Form</h1>
-        <h2>Explanation</h2>
         <form onSubmit={this.handleSubmit}>
           <Input
             name={"username"}
