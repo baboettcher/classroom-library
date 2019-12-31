@@ -5,6 +5,7 @@ import Rentals from "./components/rentals";
 import MovieForm from "./components/movieForm";
 import NotFound from "./components/notFound";
 import LoginForm from "./components/loginForm";
+import Register from "./components/register";
 import Navbar from "./components/navbar";
 import { Route, Redirect, Switch } from "react-router-dom"
 import ColorChangerHooks from "./testHooks/colorChanger_hooks";
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/customers" component={Customers}></Route>
             <Route path="/rentals" component={Rentals}></Route>
             <Route path="/login" component={LoginForm}></Route>
+            <Route path="/register" component={Register}></Route>
             <Route path="/notfound" component={NotFound}></Route>
             <Redirect exact from="/" to="/movies"> </Redirect>
             <Redirect to="/notfound" > </Redirect>

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import Form from "./common/form"
 import Joi from "joi-browser"
 
+// TUESDAY: - REGISTER COMPONENT
+// Username must be a valid email
+// Password muts be a minimum of 5 characters
+// 
+
 class LoginForm extends Form {
   state = {
     data: {
