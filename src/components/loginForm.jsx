@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Form from "./common/form"
 import Joi from "joi-browser"
 
 
 class LoginForm extends Form {
-  // state = {
-  //   data: {
-  //     username: "",
-  //     password: ""
-  //   },
-  //   errors: {}
-  // }
+  state = {
+    data: {
+      username: "",
+      password: ""
+    },
+    errors: {}
+  }
 
   schema = {
     username: Joi.string().required().label("Username"),
