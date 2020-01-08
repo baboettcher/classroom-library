@@ -6,6 +6,7 @@ import MoviesTable from "./moviesTable";
 import { paginate } from "../utils/paginate";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -24,11 +25,6 @@ class Movies extends Component {
       genres: [{ _id: "", name: "All Genres" }, ...getGenres()]
     });
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   // console.log("prevProps:", prevProps);
-  //   // console.log("prevState:", prevState);
-  // }
 
   handleDelete = id => {
     this.setState({
@@ -106,7 +102,10 @@ class Movies extends Component {
             There are a total of {moviesLength} in {selectedGenreFilter.name}{" "}
             genre
           </h4>
-
+          <Link
+            to="/movies/new"
+            className="btn btn-primary"
+            style={{ marginBottom: 20 }}>New</Link>
           <MoviesTable
             data={movies}
             dataToDisplay={moviesToDisplay}
