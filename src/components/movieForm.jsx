@@ -2,14 +2,13 @@ import React from 'react';
 import Form from "./common/form"
 import Joi from "joi-browser"
 import { getGenres } from "../services/fakeGenreService";
-import { getMovie } from "../services/fakeMovieService";
+import { getMovie, saveMovie } from "../services/fakeMovieService";
 
 class MovieForm extends Form {
   state = {
     data: {
-      _id: "",
       title: "",
-      genreID: "",
+      genreId: "",
       numberInStock: "",
       dailyRentalRate: ""
     },
@@ -21,21 +20,22 @@ class MovieForm extends Form {
     _id: Joi.string(),
     title: Joi.string()
       .required()
-      .label("Username"),
-    genreID: Joi.string()
+      .label("Title"),
+    genreId: Joi.string()
       .required()
       .label("Genre"),
     numberInStock: Joi.number()
       .required()
-      .label("Number In Stock")
       .min(0)
-      .max(100),
-    dateRentalRate: Joi.number()
+      .max(100)
+      .label("Number in Stock"),
+    dailyRentalRate: Joi.number()
       .required()
+      .min(0)
+      .max(10)
       .label("Daily Rental Rate")
-      .min(1)
-      .max(10),
-  }
+  };
+
 
   componentDidMount() {
     const genres = getGenres()
@@ -56,50 +56,32 @@ class MovieForm extends Form {
     return {
       _id: movieObject._id,
       title: movieObject.title,
-      genreID: movieObject.genre._id,
+      genreId: movieObject.genre._id,
       numberInStock: movieObject.numberInStock,
       dailyRentalRate: movieObject.dailyRentalRate
     }
   }
 
-  renderSelect(genreId, genreLabel) {
-    // iterate through list of genres
-    // add "selected" to the menu
-    console.log("GENRES:", this.state.genres)
-    const genresMenu = this.state.genres.map((item) => {
 
-      return (
-        <option key={item._id} value={item.name} >{item.name}</option>
-      )
-    })
-    return (
-      <>
-        <p>{genreLabel}</p>
-        <select>
-          {genresMenu}
-        </select>
-      </>
-    )
-  }
-
-  doSubmit = (movieObject) => {
-    // call server
-    this.saveMove(this.state.data)
-    console.log("submitted")
+  doSubmit = () => {
+    saveMovie(this.state.data)
+    this.props.history.push("/movies");
   }
 
   render() {
-    const { match, history } = this.props;
-    const { id } = match
-    console.log("state-->", this.state)
+    //const { match, history } = this.props;
+    //const { id } = match
+    console.log("FIX THE BUTTON. Why not validating?===>", this.state.data)
+    console.log("validated?===>", this.validate())
 
     return (
       <React.Fragment>
-        <h1>MovieForm{id}</h1>
+        <h1>MovieForm</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
-          {this.renderSelect("", "Genre")}
+          {this.renderSelect("genreId", "Genre", this.state.genres)}
           {this.renderInput("numberInStock", "Number In Stock")}
+          {this.renderInput("dailyRentalRate", "Rate")}
           {this.renderButton("Save")}
         </form>
       </React.Fragment >
@@ -109,10 +91,3 @@ class MovieForm extends Form {
 
 
 export default MovieForm;
-
-{/*         <button className="btn btn-primary" onClick={
-  () => {
-    history.push("/movies")
-  }
-}>Save</button>
-*/}
