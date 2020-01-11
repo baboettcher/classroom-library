@@ -118,7 +118,7 @@ class Movies extends Component {
             className="btn btn-primary"
             style={{ marginBottom: 20 }}>New</Link>
           <h4>
-            There are a grand total of {moviesLength} in {selectedGenreFilter ? selectedGenreFilter.name : null}{" "}
+            There are a total of {moviesLength} in {selectedGenreFilter ? selectedGenreFilter.name : null}{" "}
             genre
           </h4>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
