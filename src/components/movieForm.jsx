@@ -69,11 +69,6 @@ class MovieForm extends Form {
   }
 
   render() {
-    //const { match, history } = this.props;
-    //const { id } = match
-    console.log("FIX THE BUTTON. Why not validating?===>", this.state.data)
-    console.log("validated?===>", this.validate())
-
     return (
       <React.Fragment>
         <h1>MovieForm</h1>
