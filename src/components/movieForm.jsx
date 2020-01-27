@@ -69,6 +69,7 @@ class MovieForm extends Form {
   }
 
   render() {
+    console.log("genreId-->", this.state.data)
     return (
       <React.Fragment>
         <h1>MovieForm</h1>
