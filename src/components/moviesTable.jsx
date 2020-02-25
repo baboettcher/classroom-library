@@ -47,6 +47,7 @@ class MoviesTable extends Component {
   ]
 
   render() {
+    console.log(this.props, "------>>>>>")
     const { data, dataToDisplay, onSort, sortColumn } = this.props;
 
     return (
