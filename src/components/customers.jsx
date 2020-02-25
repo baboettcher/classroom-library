@@ -3,7 +3,9 @@ import React from 'react';
 
 const Customers = () => {
 
-  return (<h1>Customers AAA and CCC - revert failed</h1>);
+
+  return (<h1>Customers post test #2</h1>);
+
 }
 
 
