@@ -9,6 +9,7 @@ import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { Link } from "react-router-dom";
 
+
 class Movies extends Component {
   state = {
     movies: [],
@@ -106,6 +107,7 @@ class Movies extends Component {
     return (
       <div className="row">
         <div className="col-2">
+       
           <ListGroup
             items={genres}
             onItemSelect={this.handleGenreSelect}
