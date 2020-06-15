@@ -4,6 +4,6 @@ import { apiEndpoint } from '../config.json'
 
 export function getGenres() {
 
-  return http.get(apiEndpoint)
+  return http.get(apiEndpoint + "genres")
 }
 
