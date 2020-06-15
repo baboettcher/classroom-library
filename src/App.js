@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Route, Redirect, Switch } from "react-router-dom"
+import { ToastContainer } from 'react-toastify'
 import Movies from "./components/movies";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
@@ -7,8 +9,8 @@ import NotFound from "./components/notFound";
 import LoginForm from "./components/loginForm";
 import Register from "./components/register";
 import Navbar from "./components/navbar";
-import { Route, Redirect, Switch } from "react-router-dom"
 import ColorChangerHooks from "./testHooks/colorChanger_hooks";
+import 'react-toastify/dist/ReactToastify.css'
 import "./App.css";
 
 // Kidcoin "Classroom Library" plug-in prototype based on Mosh H course
@@ -18,6 +20,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <ToastContainer />
         <Navbar />
         <main className="container" >
           <h1> Classroom Library </h1>

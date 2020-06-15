@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios'
 import Form from "./common/form"
 import Joi from "joi-browser"
 import { getGenres } from "../services/fakeGenreService";
@@ -38,6 +39,11 @@ class MovieForm extends Form {
 
 
   componentDidMount() {
+    // const { data: posts } = await axios.get("http://jsonplaceholder.typicode.com/posts")
+
+    // console.log("posts", posts)
+    // this.setState({ posts })
+
     const genres = getGenres()
     this.setState({ genres })
 

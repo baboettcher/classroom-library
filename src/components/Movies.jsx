@@ -6,7 +6,7 @@ import MoviesTable from "./moviesTable";
 import SearchBox from "./searchBox";
 import { paginate } from "../utils/paginate";
 import { getMovies } from "../services/fakeMovieService";
-import { getGenres } from "../services/fakeGenreService";
+import { getGenres } from "../services/genreService";
 import { Link } from "react-router-dom";
 
 
@@ -22,10 +22,11 @@ class Movies extends Component {
     sortColumn: { path: "title", order: "asc" }
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    const { data } = await getGenres()
     this.setState({
       movies: getMovies(),
-      genres: [{ _id: "", name: "All Genres" }, ...getGenres()]
+      genres: [{ _id: "", name: "All Genres" }, ...data]
     });
   }
 
@@ -107,7 +108,7 @@ class Movies extends Component {
     return (
       <div className="row">
         <div className="col-2">
-       
+
           <ListGroup
             items={genres}
             onItemSelect={this.handleGenreSelect}
