@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import Form from "./common/form"
 import Joi from "joi-browser"
-import { getGenres } from "../services/fakeGenreService";
-import { getMovie, saveMovie } from "../services/fakeMovieService";
+import { getGenres } from "../services/genreService";
+import { getMovie, saveMovie } from "../services/movieService";
 
 class MovieForm extends Form {
   state = {
@@ -37,30 +38,38 @@ class MovieForm extends Form {
       .label("Daily Rental Rate")
   };
 
-
-  componentDidMount() {
-    // const { data: posts } = await axios.get("http://jsonplaceholder.typicode.com/posts")
-
-    // console.log("posts", posts)
-    // this.setState({ posts })
-
-    const genres = getGenres()
+  async populateGenres() {
+    const { data: genres } = await getGenres()
     this.setState({ genres })
-
-    const { id: movieId } = this.props.match.params
-    if (movieId === "new") return
-
-    const movie = getMovie(movieId)
-    if (!movie) { return this.props.history.replace("/not-found") }
-    // history.push would create infinite loop
-    // don't assume code below won't execute if user redirected
-
-    this.setState({ data: this.mapToViewModel(movie) })
   }
+
+  async populateMovie() {
+    try {
+      const { id: movieId } = this.props.match.params
+      if (movieId === "new") return
+
+      const { data: movie } = await getMovie(movieId)
+      this.setState({ data: this.mapToViewModel(movie) })
+    }
+    catch (err) {
+      if (err.response && err.response.status === 404) {
+        // return not needed; invalid ID and user is redirected to not-found
+        this.props.history.replace("/not-found")
+      }
+    }
+  }
+
+  async componentDidMount() {
+    await this.populateGenres()
+    await this.populateMovie()
+  }
+
+
+
 
   mapToViewModel(movieObject) {
     return {
-      _id: movieObject._id,
+      // _id: movieObject._id,
       title: movieObject.title,
       genreId: movieObject.genre._id,
       numberInStock: movieObject.numberInStock,
