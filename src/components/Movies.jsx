@@ -26,11 +26,9 @@ class Movies extends Component {
   async componentDidMount() {
     const { data } = await getGenres()
     const genres = [{ _id: "", name: "All Genres" }, ...data]
-
     const results = await getMovies()
     const movies = results.data
     this.setState({ movies, genres });
-
   }
 
   handleDelete = async movieId => {
@@ -41,10 +39,10 @@ class Movies extends Component {
 
     try {
       // WEDNESDAY MORNING
-      // 1) WHY IS MOVIE._ID undefined?
+
       // 2) Fix the issue with the updates being created as new document
       // 3) Finish segment and BLAST thought the authentication part b4 lunch and kids at 1:00 - 
-      //  VAM VAM VAM VAM VAM!
+
       await deleteMovie(movieId)
     }
     catch (err) {

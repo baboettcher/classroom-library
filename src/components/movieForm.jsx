@@ -1,6 +1,4 @@
-import React from 'react';
-import axios from 'axios'
-import { toast } from 'react-toastify'
+import React from 'react'
 import Form from "./common/form"
 import Joi from "joi-browser"
 import { getGenres } from "../services/genreService";
@@ -67,7 +65,7 @@ class MovieForm extends Form {
 
   mapToViewModel(movieObject) {
     return {
-      // _id: movieObject._id,
+      _id: movieObject._id,
       title: movieObject.title,
       genreId: movieObject.genre._id,
       numberInStock: movieObject.numberInStock,
