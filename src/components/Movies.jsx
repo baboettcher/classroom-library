@@ -33,13 +33,19 @@ class Movies extends Component {
 
   }
 
-  handleDelete = async movie => {
+  handleDelete = async movieId => {
     const originalMovies = this.state.movies
-    const movies = originalMovies.filter(m => m._id !== movie._id)
+    const movies = originalMovies.filter(m => m._id !== movieId)
     this.setState({ movies })
+    console.log("movie======>", movieId)
 
     try {
-      await deleteMovie(movie._id)
+      // WEDNESDAY MORNING
+      // 1) WHY IS MOVIE._ID undefined?
+      // 2) Fix the issue with the updates being created as new document
+      // 3) Finish segment and BLAST thought the authentication part b4 lunch and kids at 1:00 - 
+      //  VAM VAM VAM VAM VAM!
+      await deleteMovie(movieId)
     }
     catch (err) {
       if (err.response && err.response.status === 404) {

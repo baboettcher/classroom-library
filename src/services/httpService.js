@@ -11,7 +11,7 @@ axios.interceptors.response.use(null, error => {
   const expectError = error.response && error.response.status >= 400 && error.response.status < 500
 
   if (!expectError) {
-    // console.log("INTERCEPTOR CALLED - Logging the error")
+    console.log("INTERCEPTOR CALLED - Logging the error", error)
 
     // Raven.captureException(error)
     //logger.log(error)

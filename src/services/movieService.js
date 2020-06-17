@@ -15,23 +15,25 @@ export function getMovie(movieId) {
 
 export async function saveMovie(movie) {
 
-  // const genres = await getGenres()
-  // const movies = getMovies()
-  // let movieInDb = movies.find(m => m._id === movie._id) || {};
-  // movieInDb.title = movie.title;
-  // movieInDb.genre = genres.find(g => g._id === movie.genreId);
-  // movieInDb.numberInStock = movie.numberInStock;
-  // movieInDb.dailyRentalRate = movie.dailyRentalRate;
+  // if movie exists, update with put
+  if (movie._id) {
+    // need to remove ID from body bc already exists in URL
 
-  // if (!movieInDb._id) {
-  //   movieInDb._id = Date.now().toString()
-  //   movies.push(movieInDb);
-  // }
+    const modifiedMovie = { ...movie }
+    delete modifiedMovie._id
 
-  //return movieInDb;
+    return http.put(apiEndpoint + "/movies/" + movie._id, modifiedMovie)
+  } else {
+
+    // create new movie
+    return http.post(apiEndpoint + "/movies", movie)
+
+  }
+
 }
 
 
 export function deleteMovie(id) {
+  console.log("delete!", id)
   return http.delete(apiEndpoint + "/movies/" + id);
 }

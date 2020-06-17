@@ -65,8 +65,6 @@ class MovieForm extends Form {
   }
 
 
-
-
   mapToViewModel(movieObject) {
     return {
       // _id: movieObject._id,
@@ -84,7 +82,6 @@ class MovieForm extends Form {
   }
 
   render() {
-    console.log("genreId-->", this.state.data)
     return (
       <React.Fragment>
         <h1>MovieForm</h1>
