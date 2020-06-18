@@ -35,14 +35,8 @@ class Movies extends Component {
     const originalMovies = this.state.movies
     const movies = originalMovies.filter(m => m._id !== movieId)
     this.setState({ movies })
-    console.log("movie======>", movieId)
 
     try {
-      // WEDNESDAY MORNING
-
-      // 2) Fix the issue with the updates being created as new document
-      // 3) Finish segment and BLAST thought the authentication part b4 lunch and kids at 1:00 - 
-
       await deleteMovie(movieId)
     }
     catch (err) {

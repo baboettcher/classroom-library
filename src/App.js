@@ -23,7 +23,7 @@ class App extends Component {
         <ToastContainer />
         <Navbar />
         <main className="container" >
-          <h1> Classroom Library </h1>
+          <h1>Classroom Library </h1>
           <Switch>
             <Route path="/movies/:id" component={MovieForm}></Route>
             <Route path="/movies" component={Movies}></Route>
