@@ -14,6 +14,10 @@ import 'react-toastify/dist/ReactToastify.css'
 import "./App.css";
 
 // Kidcoin "Classroom Library" plug-in prototype based on Mosh H course
+const divStyle = {
+  color: 'blue',
+  fontSize: '5em',
+};
 
 
 class App extends Component {
@@ -23,7 +27,7 @@ class App extends Component {
         <ToastContainer />
         <Navbar />
         <main className="container" >
-          <h1>Classroom Library </h1>
+          <h1 style={divStyle}>Classroom Library </h1>
           <Switch>
             <Route path="/movies/:id" component={MovieForm}></Route>
             <Route path="/movies" component={Movies}></Route>
@@ -35,7 +39,7 @@ class App extends Component {
             <Redirect exact from="/" to="/movies"> </Redirect>
             <Redirect to="/notfound" > </Redirect>
           </Switch>
-          <ColorChangerHooks />
+          {/* <ColorChangerHooks /> */}
         </main>
       </React.Fragment>);
   }
