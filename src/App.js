@@ -14,6 +14,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import "./App.css";
 
 // Kidcoin "Classroom Library" plug-in prototype based on Mosh H course
+// git remote set to video-management (needs fix)
+
 const divStyle = {
   color: 'blue',
   fontSize: '5em',
@@ -28,6 +30,7 @@ class App extends Component {
         <Navbar />
         <main className="container" >
           <h1 style={divStyle}>Classroom Library </h1>
+
           <Switch>
             <Route path="/movies/:id" component={MovieForm}></Route>
             <Route path="/movies" component={Movies}></Route>

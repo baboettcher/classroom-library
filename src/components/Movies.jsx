@@ -152,7 +152,6 @@ class Movies extends Component {
             onPageChange={this.handlePageChange}
             itemSelected={selectedGenreFilter}
           />
-          <h6>Issue with moviesToDisplay: {moviesToDisplay.length}</h6>
 
         </div>
       </div>
