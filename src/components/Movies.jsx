@@ -112,9 +112,9 @@ class Movies extends Component {
     // 3. PAGINATE
     const moviesToDisplay = paginate(sortedMovies, currentPage, pageSize);
 
-    if (movies.length === 0) {
-      return <p>No movies to display</p>;
-    }
+    // if (movies.length === 0) {
+    //   return <p>No movies to display</p>;
+    // }
 
     return (
       <div className="row">

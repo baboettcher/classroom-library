@@ -3,6 +3,8 @@ import axios from "axios"
 import logger from './logService'
 import { toast } from 'react-toastify'
 
+axios.defaults.baseURL = process.env.REACT_APP_API_URL
+
 // axios.interceptors.response.use(success, error)
 // null passed for 'success' because not important here, perhaps in the futire this would be logged somewhere
 // error executed everytime we have a response with an error
